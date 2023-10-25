@@ -20,8 +20,33 @@
 
           <div class="box">
             <div class="box-header">
+              <?php if($this->session->flashdata('success')){ ?>
+              <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <i class="fa fa-close"></i>
+                </button>
+                <span style="text-align:left;">
+                  <?php echo $this->session->flashdata('success') ?>
+                </span>
+              </div>
+                <?php } ?>
+                <?php if($this->session->flashdata('error')){ ?>
+              <div class="alert alert-error">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <i class="fa fa-close"></i>
+                </button>
+                <span style="text-align:left;">
+                <?php echo $this->session->flashdata('error') ?>
+                </span>
+              </div>
+              <?php } ?>
               <h3 class="box-title">Data Pelajar SMK</h3>
             </div>
+            <div class="box-body">
+            <div class="pull-left">
+          <a href="<?php echo base_url()?>Study/tambah" class="btn btn-primary"><i class="mdi mid-plus-circle mr-2 fa fa-plus"></i> Tambah Pelajar</a>
+        </div>
+        </div>
             <!-- /.box-header -->
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
@@ -32,6 +57,7 @@
                   <th>Kelas</th>
                   <th>Jurusan</th>
                   <th>Email</th>
+                  <th>Aksi</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -42,6 +68,10 @@
                   <td><?php echo $data['kelas']; ?></td>
                   <td><?php echo $data['jurusan']; ?></td>
                   <td><?php echo $data['email']; ?></td>
+                  <td><span data-toggle="tooltip" data-original-title="Edit Data" style="font-size:10;"><a class="btn btn-warning" href="<?php echo base_url()?>Study/edit/<?php echo $data['nis'] ?>"><i class="fa fa-edit"></i></a></span>
+                  <span data-toggle="tooltip" data-original-title="Hapus Data" style="font-size:10;"><a class="btn btn-danger" href="<?php echo base_url()?>Study/hapus/<?php echo $data['nis'] ?>"><i class="fa fa-trash-o"></i></a></span>
+                </td>
+                  
                 </tr>
                 <?php } ?>
                 </tfoot>
